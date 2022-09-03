@@ -1,0 +1,25 @@
+kubernetes apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testpark
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: park
+      version: 1.0.0
+  template:
+    metadata:
+      labels:
+        app: park
+        version: 1.0.0
+    spec:
+      containers:
+      - name: park
+        image: "hathemy/parking"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3000
